@@ -9,26 +9,23 @@
     <h1> Product Inventory Management</h1>
 
   <label for="Id">Product ID:</label>
-  <input type="number" id="productId"><br>
+  <input type="number" name="productId" id="productId"><br>
   <label for="Name">Product Name:</label>
-  <input type="text" id="productName"><br>
+  <input type="text" name="productName" id="productName"><br>
   <label for="productQuantity">Quantity:</label>
-  <input type="number" id="productQuantity"><br><ul></ul>
-  <button onclick="addProduct()">Add Product</button><br>
+  <input type="number" name="productQuantity" id="productQuantity"><br><ul></ul>
+  
+  <button onclick="addProduct(document.getElementById('productId').value, document.getElementById('productName').value, document.getElementById('productQuantity').value)">Add Product</button><br>
   <button onclick="displayInventory()">Display Inventory</button><br>
-  <button onclick="findProduct()">Find Product</button>
+  <button onclick="findProduct(document.getElementById('productId').value)">Find Product</button>
+  
     <script>
         
 let inventory = {};
 
 
-function addProduct(productId, name, quantity) {
-    // if (typeof productId !== 'number' || typeof name !== 'string' || typeof quantity !== 'number') {
-    //     console.log("Invalid input. Please provide valid input types.");
-    //     return;
-    // }
-
-    if (inventory.hasOwnProperty(productId)) {
+function addProduct(Id, name, quantity) {
+    if (inventory.hasOwnProperty(Id)) {
         console.log("Product already exists. Updating quantity...");
         inventory[productId].quantity += quantity;
     } else {
@@ -41,26 +38,24 @@ function addProduct(productId, name, quantity) {
 function displayInventory() {
     console.log("Current Inventory:");
     for (const productId in inventory) {
-        console.log( `Product ID: ${productId}, Name: ${inventory[productId].name}, Quantity: ${inventory[productId].quantity}\n`);
+        console.log( `Product ID: ${[productId]}, Name: ${inventory[productId].name}, Quantity: ${inventory[productId].quantity}\n`);
     }
 }
 
 
 function findProduct(productId) {
     if (inventory.hasOwnProperty(productId)) {
-        console.log( `Product ID: ${productId}, Name: ${inventory[productId].name}, Quantity: ${inventory[productId].quantity}\n`);
+        console.log( `Product ID: ${[productId]}, Name: ${inventory[productId].name}, Quantity: ${inventory[productId].quantity}\n`);
     } else {
         console.log("Product not found in the inventory.");
     }
 }
 
 
-addProduct("P001", "Product 1", 10);
-addProduct("P002", "Product 2", 20);
 addProduct("P003", "Product 3", 15);
 displayInventory();
-findProduct("P002");
-findProduct("P004");
+// findProduct("P002");
+// findProduct("P004");
     </script>
     
 </body>
