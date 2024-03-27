@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Inventory Management</title>
+</head>
+<body>
+    <h1> Product Inventory Management</h1>
+
+  <label for="Id">Product ID:</label>
+  <input type="number" id="productId"><br>
+  <label for="Name">Product Name:</label>
+  <input type="text" id="productName"><br>
+  <label for="productQuantity">Quantity:</label>
+  <input type="number" id="productQuantity"><br><ul></ul>
+  <button onclick="addProduct()">Add Product</button><br>
+  <button onclick="displayInventory()">Display Inventory</button><br>
+  <button onclick="findProduct()">Find Product</button>
+    <script>
+        
+let inventory = {};
+
+
+function addProduct(productId, name, quantity) {
+    // if (typeof productId !== 'number' || typeof name !== 'string' || typeof quantity !== 'number') {
+    //     console.log("Invalid input. Please provide valid input types.");
+    //     return;
+    // }
+
+    if (inventory.hasOwnProperty(productId)) {
+        console.log("Product already exists. Updating quantity...");
+        inventory[productId].quantity += quantity;
+    } else {
+        inventory[productId] = { name, quantity };
+        console.log("Product added to inventory.");
+    }
+}
+
+
+function displayInventory() {
+    console.log("Current Inventory:");
+    for (const productId in inventory) {
+        console.log( `Product ID: ${productId}, Name: ${inventory[productId].name}, Quantity: ${inventory[productId].quantity}\n`);
+    }
+}
+
+
+function findProduct(productId) {
+    if (inventory.hasOwnProperty(productId)) {
+        console.log( `Product ID: ${productId}, Name: ${inventory[productId].name}, Quantity: ${inventory[productId].quantity}\n`);
+    } else {
+        console.log("Product not found in the inventory.");
+    }
+}
+
+
+addProduct("P001", "Product 1", 10);
+addProduct("P002", "Product 2", 20);
+addProduct("P003", "Product 3", 15);
+displayInventory();
+findProduct("P002");
+findProduct("P004");
+    </script>
+    
+</body>
+</html>
